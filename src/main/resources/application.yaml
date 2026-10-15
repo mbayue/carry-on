@@ -1,0 +1,38 @@
+server:
+  port: ${PORT:3000}
+
+spring:
+  application:
+    name: task-manager
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/mydatabase}
+    username: ${DB_USER:myuser}
+    password: ${DB_PASSWORD:secret}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 2
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:c3VwZXJfc2VjcmV0X2tleV9mb3Jfand0X3Rhc2tfbWFuYWdlcl9hcGlfMjAyNg==}
+    expiration-ms: 3600000
